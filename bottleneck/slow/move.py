@@ -29,6 +29,23 @@ def move_mean(a, window, min_count=None, axis=-1):
     return move_func(np.nanmean, a, window, min_count, axis=axis)
 
 
+def move_wmean(a, window, min_count=None, axis=-1, weights=None):
+    """
+
+    Args:
+        a:
+        weights:
+        window:
+        min_count:
+        axis:
+
+    Returns:
+
+    """
+
+    return move_func(np.average, a, window, min_count, axis=axis, weights=weights)
+
+
 def move_std(a, window, min_count=None, axis=-1, ddof=0):
     "Slow move_std for unaccelerated dtype"
     return move_func(np.nanstd, a, window, min_count, axis=axis, ddof=ddof)
@@ -201,29 +218,29 @@ def lastrank(a, axis=-1):
     --------
     Create an array:
 
-    >>> y1 = larry([1, 2, 3])
+    y1 = larry([1, 2, 3])
 
     What is the rank of the last element (the value 3 in this example)?
     It is the largest element so the rank is 1.0:
 
-    >>> import numpy as np
-    >>> from la.afunc import lastrank
-    >>> x1 = np.array([1, 2, 3])
-    >>> lastrank(x1)
+    import numpy as np
+    from la.afunc import lastrank
+    x1 = np.array([1, 2, 3])
+    lastrank(x1)
     1.0
 
     Now let's try an example where the last element has the smallest
     value:
 
-    >>> x2 = np.array([3, 2, 1])
-    >>> lastrank(x2)
+    x2 = np.array([3, 2, 1])
+    lastrank(x2)
     -1.0
 
     Here's an example where the last element is not the minimum or maximum
     value:
 
-    >>> x3 = np.array([1, 3, 4, 5, 2])
-    >>> lastrank(x3)
+    x3 = np.array([1, 3, 4, 5, 2])
+    lastrank(x3)
     -0.5
 
     """
